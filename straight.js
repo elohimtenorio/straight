@@ -20,7 +20,7 @@ isConsecutive = ((a,b)=>{
     return consecutive = (b-a==1) || (a==card.A && b==card.N2);
 });
 
-getStright = ((sortedCards,size)=>{
+getStraight = ((sortedCards,size)=>{
     let straight = [], lastElement = 0;
     sortedCards.forEach((element) => {
         if (isConsecutive(lastElement,element)){
@@ -40,18 +40,28 @@ getStright = ((sortedCards,size)=>{
 
 });
 
-isStraight = ((cards)=>{
+validate = function(cards){
     if (!cards || !Array.isArray(cards) || cards.length==0 || cards.length>7){
+        return false;
+    }
+    let valid = true;
+    cards.forEach(element => {
+        valid = (element>0 && element < 15 );
+    });
+    return valid;
+};
+
+isStraight = ((cards)=>{
+    if (!validate(cards)){
         return false;
     }
     let sortedCards = cards.sort((a,b)=>a-b).filter((value,index,self)=>self.indexOf(value) === index);
     if (sortedCards[sortedCards.length-1]==card.A) sortedCards.unshift(card.A);
-    return getStright(sortedCards,straightSize)!==false;
+    return getStraight(sortedCards,straightSize)!==false;
 });
-
-console.log(isStraight([7, 7, 12 ,11, 3, 4, 14]));
 
 module.exports={
     isStraight,
-    isConsecutive
+    isConsecutive,
+    validate
 }

@@ -28,6 +28,11 @@ describe('Straight test cases', () => {
 		it('should has some card', () => {
 			assert.notEqual(straight.isStraight([]),true);
 		});
+		it('should has valid cards', () => {
+			assert.notEqual(straight.validate([2, 3, 4 ,5, 6, 15]),true);
+			assert.equal(straight.validate([2, 3, 4 ,5, 6]),true);
+			assert.equal(straight.validate([14, 5, 4 ,2, 3]),true);
+		});
 		it('should be straight', () => {
 			assert.equal(straight.isStraight([2, 3, 4 ,5, 6]),true);
 			assert.equal(straight.isStraight([14, 5, 4 ,2, 3]),true);
