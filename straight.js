@@ -20,7 +20,9 @@ isConsecutive = ((a,b)=>{
     return consecutive = (b-a==1) || (a==card.A && b==card.N2);
 });
 
-getStraight = ((sortedCards,size)=>{
+getStraight = ((cards,size)=>{
+    let sortedCards = cards.sort((a,b)=>a-b).filter((value,index,self)=>self.indexOf(value) === index);
+    if (sortedCards[sortedCards.length-1]==card.A) sortedCards.unshift(card.A);
     let straight = [], lastElement = 0;
     sortedCards.forEach((element) => {
         if (isConsecutive(lastElement,element)){
@@ -55,9 +57,7 @@ isStraight = ((cards)=>{
     if (!validate(cards)){
         return false;
     }
-    let sortedCards = cards.sort((a,b)=>a-b).filter((value,index,self)=>self.indexOf(value) === index);
-    if (sortedCards[sortedCards.length-1]==card.A) sortedCards.unshift(card.A);
-    return getStraight(sortedCards,straightSize)!==false;
+    return getStraight(cards,straightSize)!==false;
 });
 
 module.exports={
