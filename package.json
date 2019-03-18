@@ -1,0 +1,15 @@
+{
+  "name": "straight",
+  "version": "1.0.0",
+  "description": "Straight Function",
+  "main": "straight.js",
+  "scripts": {
+    "test": "mocha *.test.js"
+  },
+  "author": "Elohim Tenorio",
+  "license": "MIT",
+  "devDependencies": {
+    "expect": "^24.5.0",
+    "mocha": "^6.0.2"
+  }
+}
